@@ -1,0 +1,18 @@
+{% extends "Base.html" %}
+{% block body %}
+
+<br><br>
+<div class = 'w3-container w3-content w3-card-4' style = 'background-color: #252525; padding:0;'>
+    <div class = 'w3-col m3'>
+        <img style = 'width: 100%; padding:0;' class = 'w3-hover-opacity' src="{{ url_for('static', filename=movieData['img_src']) }}">
+    </div>
+    <div class = 'w3-col m9 w3-padding-large'>
+        <div class = 'w3-jumbo'>{{movieData["name"]}}</div>
+        <br>{{movieData["genre"]}}
+        <p>Lorem ipsum bullshit...
+    </div>
+</div><br>
+
+<div class = 'w3-container w3-content w3-card-4 w3-padding-large' id = 'SelectionDetails'><br>
+</div>
+{% endblock %}
