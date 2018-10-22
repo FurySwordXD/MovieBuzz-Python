@@ -1,18 +1,63 @@
 {% extends "Base.html" %}
 {% block body %}
-
 <br><br>
-<div class = 'w3-container w3-content w3-card-4' style = 'background-color: #252525; padding:0;'>
-    <div class = 'w3-col m3'>
-        <img style = 'width: 100%; padding:0;' class = 'w3-hover-opacity' src="{{ url_for('static', filename=movieData['img_src']) }}">
-    </div>
-    <div class = 'w3-col m9 w3-padding-large'>
-        <div class = 'w3-jumbo'>{{movieData["name"]}}</div>
-        <br>{{movieData["genre"]}}
-        <p>Lorem ipsum bullshit...
-    </div>
-</div><br>
-
-<div class = 'w3-container w3-content w3-card-4 w3-padding-large' id = 'SelectionDetails'><br>
+<div class = 'w3-container w3-content w3-card-4 w3-padding'>
+<!---   Movie Title Info    -->
+<div class="w3-black">
+    <h3 class="w3-large">{{ data['name'] }} - {{ data['language'] }}</h3>
 </div>
+
+<!--    Movie Picture       -->
+<div>
+    <img style = 'margin: 0px;width: 100%;' class = 'w3-hover-opacity' src="{{data['big_img_src']}}">
+</div>
+
+<!--    Main Parent Div     -->
+<div class="w3-row w3-padding-large">
+
+    <!-- Seats Child -->
+    <div class="w3-col m9 w3-center w3-padding" style="border-right: 1px solid grey;">
+            <h3 class="w3-black w3-center">Choose Your Seats</h3>
+            {% for row in range(10) %}
+                {% for column in range(12) %}
+                    <div style="display: inline-block;" >
+                        <img class="w3-btn w3-hover-red" src = "{{ url_for('static' , filename= 'assets/Icons/seat.png') }}" style="width:70%;height:70%;padding:2.5px;">
+                    </div>
+                {% endfor %}
+                <br>
+            {% endfor %}
+            <br>
+            <img src = "https://img.spicinemas.in/resources/images/screen-this-way.png" width = "100%" style="margin-top:10px;">
+    </div>
+
+    <!-- Synopsis Child -->
+    <div class="w3-col m3 w3-padding w3-right">
+        <center><h4>Synopsis</h4></center>
+        <table class="w3-table" style="color: rgb(186, 178, 178);">
+            <tr>
+                <th>Name:</th>
+                <th>{{ data['name'] }}</th>
+            </tr>
+            <tr>
+                <th>Genre:</th>
+                <th>{{ data['genre'] }}</th>
+            </tr>
+            <tr>
+                <th>Language:</th>
+                <th>{{ data['language'] }}</th>
+            </tr>
+            <tr>
+                <th>Duration:</th>
+                <th>{{ data['duration'] }}</th>
+            </tr>
+        </table>
+        <button class="w3-button w3-black w3-right w3-section" type="submit">
+            <i class="fa fa-ticket"></i> Confirm Booking
+        </button>
+        
+    </div>
+</div>
+
+</div>
+<br><br>
 {% endblock %}

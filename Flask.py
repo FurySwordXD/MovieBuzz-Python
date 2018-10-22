@@ -18,7 +18,7 @@ def index():
     data = []
     for i in result:
         data.append({
-            "name": i[0], "genre": i[1], "language": i[2], "img_src": i[3], "duration": i[4]
+            "name": i[0], "genre": i[1], "language": i[2], "img_src": i[3], "duration": i[5]
         })
     print(data)
     
@@ -35,10 +35,10 @@ def movie(movieName):
 
     result = cursor.fetchone()
     
-    data = { "name": result[0], "genre": result[1], "language": result[2], "img_src": result[3], "duration": result[4] }
+    data = { "name": result[0], "genre": result[1], "language": result[2], "img_src": result[3], "duration": result[5], "big_img_src": result[4] }
     print(data)
     
-    return render_template("Movie.html",movieData=data)
+    return render_template("Movie.html",data=data)
 
 #AJAX
 @app.route("/login", methods=['POST'])
@@ -80,7 +80,7 @@ def register():
     age = request.form['Age']
     name = request.form['Name']
 
-    sql = "INSERT INTO users VALUES(%s, %s, %s, %s)"
+    sql = "INSERT INTO users(email, password, name, age) VALUES(%s, %s, %s, %s)"
     data = (email, pwd, name, age)
     result = cursor.execute(sql, data)
 
